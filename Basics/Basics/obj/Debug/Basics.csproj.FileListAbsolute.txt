@@ -1,0 +1,6 @@
+D:\Users\jaech\Desktop\s t u d i e s\YNOV\L2\CSharp\CSharp-but-school\Basics\Basics\bin\Debug\Basics.exe
+D:\Users\jaech\Desktop\s t u d i e s\YNOV\L2\CSharp\CSharp-but-school\Basics\Basics\bin\Debug\Basics.pdb
+D:\Users\jaech\Desktop\s t u d i e s\YNOV\L2\CSharp\CSharp-but-school\Basics\Basics\obj\Debug\Basics.csproj.AssemblyReference.cache
+D:\Users\jaech\Desktop\s t u d i e s\YNOV\L2\CSharp\CSharp-but-school\Basics\Basics\obj\Debug\Basics.csproj.CoreCompileInputs.cache
+D:\Users\jaech\Desktop\s t u d i e s\YNOV\L2\CSharp\CSharp-but-school\Basics\Basics\obj\Debug\Basics.exe
+D:\Users\jaech\Desktop\s t u d i e s\YNOV\L2\CSharp\CSharp-but-school\Basics\Basics\obj\Debug\Basics.pdb
