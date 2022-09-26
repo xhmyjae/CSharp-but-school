@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Runtime.Remoting.Contexts;
 using System.Xml;
+using System.Collections.Generic;
 
 namespace Basics
 {
@@ -9,7 +11,16 @@ namespace Basics
     {
         public static void Main(string[] args)
         {
-            Loops();
+            HelloWorld();
+            Console.WriteLine(Sum(5, 4.7, -9));
+            Console.WriteLine(Recursive(3));
+            Console.WriteLine(Recursive2(3));
+            Console.WriteLine(Sums(2,4));
+            Console.WriteLine(Sums(5.4,3));
+            Console.WriteLine(SumOfArray(new double[] {4, 5, 3.7}));
+            string i = Console.ReadLine();
+            Console.WriteLine(BadFibonacci(Int32.Parse(i)));
+            Console.WriteLine(Fibonacci(Int32.Parse(i)));
         }
 
         private static void Variables()
@@ -143,6 +154,171 @@ namespace Basics
                     Console.WriteLine(test2 + "-----");
                 }
             }
+        }
+
+        private static void Arrays()
+        {
+            Console.WriteLine("EXO 1");
+            string[] fruits = { "apple", "pineapple", "watermelon", "strawberry", "banana", "grape fruits" };
+            Array.ForEach(fruits, Console.WriteLine);
+            
+            Console.WriteLine("EXO 2");
+            Console.WriteLine("1st :");
+            char[] char1 = { 'a', 'b', 'c', 'd', 'e' };
+            Array.ForEach(char1, Console.WriteLine);
+            Console.WriteLine("2nd :");
+            string str = "blabl";
+            char[] char2 = str.ToCharArray();
+            Array.ForEach(char2, Console.WriteLine);
+            
+            Console.WriteLine("EXO 3");
+            int[] randomInts = { 3, 5, 1, 4, 2 };
+            Array.Sort(randomInts);
+            Array.ForEach(randomInts, Console.WriteLine);
+
+            Console.WriteLine("EXO 4");
+            int[,] matrixArray = new int[4,4];
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    matrixArray[i, j] = j;
+                    Console.Write(matrixArray[i, j]);
+                }
+                Console.WriteLine();
+            }
+
+            Console.WriteLine("EXO 5");
+            List<Object> objectsArray = new List<object>();
+            string input = null;
+            while (true)
+            {
+                input = Console.ReadLine();
+                if (input == "0")
+                {
+                    break;
+                }
+                objectsArray.Add(input);
+            }
+            objectsArray.Reverse();
+            objectsArray.ForEach(o => Console.Write(o));
+
+            Console.WriteLine("\nEXO 6");
+            List<int> intList = new List<int>();
+            Random rdn = new Random();
+            int tryCount = 0;
+            do
+            {
+                tryCount++;
+                Console.WriteLine("Tries number " + tryCount + " :");
+                int intListCount = intList.Count;
+                for (int i = 0; i < 3 - intListCount; i++)
+                {
+                    intList.Add(rdn.Next(1, 7));
+                }
+                intList.ForEach(Console.Write);
+                Console.WriteLine();
+                
+                var query = intList.GroupBy(x => x)
+                    .Where(g => g.Count() > 1)
+                    .Select(y => y.Key)
+                    .ToList();
+
+                query.ForEach(Console.Write);
+                Console.WriteLine();
+                if (query.Count == 0)
+                {
+                    intList.Clear();
+                }
+                else
+                {
+                    foreach (var q in query)
+                    {
+                        intList.RemoveAll(r => r == q);
+                    }
+
+                    if (intList[0] == 6 && intList.Count == 1)
+                    {
+                        intList.RemoveAt(0);
+                    }
+                }
+                
+                intList.ForEach(Console.Write);
+
+            } while (intList.Count != 0);
+
+            // 1 a 6 =x 3
+            // si 2 ou plus => egaux alors remove them
+            // if length == 1 && num[0] == 6 => remove them
+            // count chaque essai
+            
+        }
+
+        private static void HelloWorld()
+        {
+            Console.WriteLine("Hello World");
+        }
+
+        private static double Sum(double x, double y, double z)
+        {
+            return x + y + z;
+        }
+
+        private static int Recursive(int x)
+        {
+            if (x == 0)
+            {
+                return 0;
+            }
+            return Recursive(x - 1);
+        }
+
+        private static bool Recursive2(int x)
+        {
+            if (x == 0)
+            {
+                return true;
+            }
+            return Recursive2(x - 1);
+        }
+
+        private static int Sums(int x, int y)
+        {
+            return x + y;
+        }
+
+        private static double Sums(double w, double z)
+        {
+            return w + z;
+        }
+
+        private static double SumOfArray(double[] array)
+        {
+            return array.Sum();
+        }
+
+        private static int BadFibonacci(int i)
+        {
+            int a = 0;
+            int b = 1;
+            int c = 0;
+            for (int j = 0; j < i; j++)
+            {
+                c = a;
+                a = b;
+                b = c + b;
+            }
+            return a;
+        }
+
+        private static int Fibonacci(int i)
+        {
+            if (i <= 2)
+            {
+                return 1;
+            }
+
+            return Fibonacci(i - 1) + Fibonacci(i - 2);
         }
     }
 }
