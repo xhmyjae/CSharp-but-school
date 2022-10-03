@@ -4,23 +4,98 @@ using System.Runtime.InteropServices;
 using System.Runtime.Remoting.Contexts;
 using System.Xml;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace Basics
 {
+    public class Car
+    {
+        public string Color;
+        public int Date;
+        private string privateStr;
+        
+        public Car()
+        {
+            Color = "yellow";
+            Date = 2999;
+        }
+
+        public Car(string color, int date)
+        {
+            Color = color;
+            Date = date;
+        }
+
+        public void DisplayCar()
+        {
+            Console.WriteLine("Color : " + Color);
+            Console.WriteLine("Date : " + Date);
+        }
+
+        public string PrivateStr
+        {
+            get { return privateStr; }
+            set { privateStr = value; }
+        }
+    }
+
+    public class Food
+    {
+        private string Origin;
+
+        public void Manger()
+        {
+            Console.WriteLine("Miam miam miam je mange un aliment");
+        }
+    }
+
+    public class Fruit : Food
+    {
+        private string Name;
+
+        public Fruit(string name)
+        {
+            Name = name;
+        }
+
+        new public void Manger()
+        {
+            Console.WriteLine("Miam miam je mange des fruits");
+        }
+    }
+
+    abstract class abs
+    {
+        public abstract bool GetBool();
+    }
+
+    interface absInt
+    {
+        void absIntMethod();
+    }
+
+    enum seasons
+    {
+        Spring,
+        Winter,
+        Autumn, 
+        Summer
+    }
+
     internal class Program
     {
         public static void Main(string[] args)
         {
-            HelloWorld();
-            Console.WriteLine(Sum(5, 4.7, -9));
-            Console.WriteLine(Recursive(3));
-            Console.WriteLine(Recursive2(3));
-            Console.WriteLine(Sums(2,4));
-            Console.WriteLine(Sums(5.4,3));
-            Console.WriteLine(SumOfArray(new double[] {4, 5, 3.7}));
-            string i = Console.ReadLine();
-            Console.WriteLine(BadFibonacci(Int32.Parse(i)));
-            Console.WriteLine(Fibonacci(Int32.Parse(i)));
+            Car car1 = new Car();
+            car1.Color = "yellow";
+            Console.WriteLine(car1.Color);
+            Car car2 = new Car("green", 1993);
+            Console.WriteLine(car2.Color);
+            car2.DisplayCar();
+            car2.PrivateStr = "blabla";
+            Console.WriteLine(car2.PrivateStr);
+            Fruit fruit = new Fruit("ananas");
+            fruit.Manger();
         }
 
         private static void Variables()
@@ -320,5 +395,7 @@ namespace Basics
 
             return Fibonacci(i - 1) + Fibonacci(i - 2);
         }
+        
+        
     }
 }
